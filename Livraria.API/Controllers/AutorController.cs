@@ -22,7 +22,7 @@ namespace Livraria.API.Controllers
         public async Task<IActionResult> Criaautor([FromServices] IAutorService autorService,[FromBody] CriaAutorRequestJson criaAutorRequestJson)
         {
             var autor = await autorService.CriaAutor(criaAutorRequestJson);
-            return CreatedAtAction(string.Empty, autor);
+            return Created(string.Empty, autor);
         }
     }
 }

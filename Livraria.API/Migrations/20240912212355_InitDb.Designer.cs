@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Livraria.API.Migrations
 {
     [DbContext(typeof(LivrariaContext))]
-    [Migration("20240912205555_InitDb")]
+    [Migration("20240912212355_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -70,30 +70,7 @@ namespace Livraria.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AutorId");
-
-                    b.HasIndex("CategoriaId");
-
                     b.ToTable("Livros");
-                });
-
-            modelBuilder.Entity("Livraria.Data.Models.LivroModel", b =>
-                {
-                    b.HasOne("Livraria.Data.Models.AutorModel", "Autor")
-                        .WithMany()
-                        .HasForeignKey("AutorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Livraria.Data.Models.CategoriaModel", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Autor");
-
-                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

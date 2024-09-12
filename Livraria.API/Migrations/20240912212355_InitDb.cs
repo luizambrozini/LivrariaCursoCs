@@ -50,42 +50,20 @@ namespace Livraria.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Livros", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Livros_Autores_AutorId",
-                        column: x => x.AutorId,
-                        principalTable: "Autores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Livros_Categorias_CategoriaId",
-                        column: x => x.CategoriaId,
-                        principalTable: "Categorias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Livros_AutorId",
-                table: "Livros",
-                column: "AutorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Livros_CategoriaId",
-                table: "Livros",
-                column: "CategoriaId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Livros");
-
-            migrationBuilder.DropTable(
                 name: "Autores");
 
             migrationBuilder.DropTable(
                 name: "Categorias");
+
+            migrationBuilder.DropTable(
+                name: "Livros");
         }
     }
 }

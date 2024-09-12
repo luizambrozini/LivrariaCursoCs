@@ -17,22 +17,19 @@ namespace Livraria.Application.Services.Livro
 
         public async Task<List<LivroModel>> ListaLivros()
         {
-            return await _context.Livros.Include(l => l.Autor)
-                                        .Include(l => l.Categoria)
+            return await _context.Livros
                                         .ToListAsync();
         }
 
         public async Task<LivroModel> BuscaLivro(int id)
         {
-            return await _context.Livros.Include(l => l.Autor)
-                                        .Include(l => l.Categoria)
+            return await _context.Livros
                                         .FirstOrDefaultAsync(l => l.Id == id) ?? null!;
         }
 
         public async Task<List<LivroModel>> BuscaLivroPeloTitulo(string titulo)
         {
-            return await _context.Livros.Include(l => l.Autor)
-                                        .Include(l => l.Categoria)
+            return await _context.Livros
                                         .Where(l => l.Titulo.Contains(titulo))
                                         .ToListAsync();
         }
