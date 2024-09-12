@@ -4,7 +4,7 @@ using Livraria.Data.Models;
 
 namespace Livraria.Application.Services.Autor
 {
-    public interface IAutorInterface
+    public interface IAutorService
     {
         Task<List<AutorModel>> ListaAutores();
         Task<AutorModel> BuscaAutor(int id);

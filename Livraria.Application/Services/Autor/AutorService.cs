@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Livraria.Application.Services.Autor
 {
-    public class AutorService : IAutorInterface
+    public class AutorService : IAutorService
     {
         private readonly LivrariaContext _context;
         public AutorService(LivrariaContext context)
@@ -39,7 +39,7 @@ namespace Livraria.Application.Services.Autor
 
             _context.Autores.Add(novoAutor);
             await _context.SaveChangesAsync();
-            
+
             return novoAutor;
         }
 
