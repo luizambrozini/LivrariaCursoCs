@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Livraria.Application.Services.Autor;
+using Livraria.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Livraria.API.Controllers
@@ -12,6 +9,7 @@ namespace Livraria.API.Controllers
     public class AutorController : ControllerBase
     {
         [HttpGet]
+        [ProducesResponseType(typeof(List<AutorModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> ListaAutores([FromServices] IAutorService autorService)
         {
             var autores = await autorService.ListaAutores();
