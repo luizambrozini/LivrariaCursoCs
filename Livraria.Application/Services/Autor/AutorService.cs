@@ -2,6 +2,7 @@
 using Livraria.Application.Comunications.Requests.Autor;
 using Livraria.Data.Contexts;
 using Livraria.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Livraria.Application.Services.Autor
 {
@@ -13,24 +14,33 @@ namespace Livraria.Application.Services.Autor
             _context = context;
         }
 
-        public Task<List<AutorModel>> ListaAutores()
+        public async Task<List<AutorModel>> ListaAutores()
         {
-            throw new NotImplementedException();
+            return await _context.Autores.ToListAsync();
         }
 
-        public Task<AutorModel> BuscaAutor(int id)
+        public async Task<AutorModel> BuscaAutor(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Autores.FirstOrDefaultAsync(a => a.Id == id) ?? null!;
         }
 
-        public Task<AutorModel> BuscaAutorPeloNome(string nome)
+        public async Task<List<AutorModel>> BuscaAutorPeloNome(string nome)
         {
-            throw new NotImplementedException();
+            return await _context.Autores.Where(a => a.Nome.Contains(nome)).ToListAsync();
         }
 
-        public Task<AutorModel> CriaAutor(CriaAutorRequestJson criaAutorRequest)
+        public async Task<AutorModel> CriaAutor(CriaAutorRequestJson criaAutorRequest)
         {
-            throw new NotImplementedException();
+            if(criaAutorRequest.NomeAutor == string.Empty) throw new Exception("Nome do autor não informado.");
+            var novoAutor = new AutorModel
+            {
+                Nome = criaAutorRequest.NomeAutor
+            };
+
+            _context.Autores.Add(novoAutor);
+            await _context.SaveChangesAsync();
+            
+            return novoAutor;
         }
 
         

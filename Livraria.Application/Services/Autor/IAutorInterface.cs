@@ -8,7 +8,7 @@ namespace Livraria.Application.Services.Autor
     {
         Task<List<AutorModel>> ListaAutores();
         Task<AutorModel> BuscaAutor(int id);
-        Task<AutorModel> BuscaAutorPeloNome(string nome);
+        Task<List<AutorModel>> BuscaAutorPeloNome(string nome);
         Task<AutorModel> CriaAutor(CriaAutorRequestJson criaAutorRequest);
     }
 }
