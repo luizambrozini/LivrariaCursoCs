@@ -1,3 +1,4 @@
+using Livraria.Application.Comunications.Requests.Autor;
 using Livraria.Application.Services.Autor;
 using Livraria.Data.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,14 @@ namespace Livraria.API.Controllers
         {
             var autores = await autorService.ListaAutores();
             return Ok(autores);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(AutorModel), StatusCodes.Status201Created)]
+        public async Task<IActionResult> Criaautor([FromServices] IAutorService autorService,[FromBody] CriaAutorRequestJson criaAutorRequestJson)
+        {
+            var autor = await autorService.CriaAutor(criaAutorRequestJson);
+            return CreatedAtAction(string.Empty, autor);
         }
     }
 }

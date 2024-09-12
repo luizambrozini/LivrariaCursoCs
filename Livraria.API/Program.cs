@@ -1,4 +1,5 @@
 using Livraria.Application.Services.Autor;
+using Livraria.Application.Services.Livro;
 using Livraria.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<LivrariaContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("Livraria.API")));
 
 builder.Services.AddScoped<IAutorService, AutorService>();
+builder.Services.AddScoped<ILivroService, LivroService>();
 
 
 var app = builder.Build();
